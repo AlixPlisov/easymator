@@ -32,7 +32,7 @@ Installation.
 Install
 ---------
 
-Requires version Potkhon 3 and newer.
+Requires version Python3 and newer.
 Just type in console/terminal: 'Python3' and url file 'Flaskstart.py'.
 
 
