@@ -1,0 +1,59 @@
+<html><head>
+  <meta charset="UTF-8">
+  <title>Multi Step Form with Progress Bar using jQuery and CSS3</title>
+
+	<link rel="stylesheet" media="screen" href="static/style2.css">
+
+
+
+
+</head>
+
+<body>
+  <!-- multistep form -->
+<form id="msform" action="/" method="post">
+  <!-- progressbar -->
+  <ul id="progressbar">
+
+
+
+  </ul>
+  <!-- fieldsets -->
+  <fieldset>
+        <br>
+
+    <h2 class="fs-title">Информация для заказа</h2>
+    <br>
+    <br>
+
+    <input type="text" name="tel_num" value='{{ tel_num }}'>
+        <input type="text" name="ads" value='{{ ads }}'>
+    <textarea type="textarea" name="note" style="height: 120px">{{ note }}</textarea>
+    <input type="text" name="res" value='{{ res }}'>
+    <input name="status" value='{{ status }}'>
+    <input type="submit" name="next" class="next action-button" value="Готово">
+  </fieldset>
+  <fieldset>
+    <h2 class="fs-title">Social Profiles</h2>
+    <h3 class="fs-subtitle">Your presence on the social network</h3>
+    <input type="text" name="twitter" placeholder="Twitter">
+    <input type="text" name="facebook" placeholder="Facebook">
+    <input type="text" name="gplus" placeholder="Google Plus">
+    <input type="button" name="previous" class="previous action-button" value="Previous">
+    <input type="button" name="next" class="next action-button" value="Next">
+  </fieldset>
+  <fieldset>
+    <h2 class="fs-title">Personal Details</h2>
+    <h3 class="fs-subtitle">We will never sell it</h3>
+    <input type="text" name="fname" placeholder="First Name">
+    <input type="text" name="lname" placeholder="Last Name">
+    <input type="text" name="phone" placeholder="Phone">
+    <textarea name="address" placeholder="Address"></textarea>
+    <input type="button" name="previous" class="previous action-button" value="Previous">
+    <input type="submit" name="submit" class="submit action-button" value="Submit">
+  </fieldset>
+</form>
+
+    <script src="{{ url_for('static', filename="js/index.js")}}"></script>
+</body>
+</html>
