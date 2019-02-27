@@ -3,7 +3,7 @@
 What is it?
 -----------
 
-The Easymator is a project for automating workflows. After filling in the 
+The Easymator is a Python(Flask) project for automating workflows. After filling in the 
 fields on the HTML page, it automatically finds the necessary data in 
 the Gmail and sends the correctly formatted data to Google Sheets.
 
