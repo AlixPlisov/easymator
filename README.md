@@ -3,19 +3,19 @@
 What is it?
 -----------
 
-The Easymator is a Python(Flask) project for automating workflows. After filling in the 
-fields on the HTML page, it automatically finds the necessary data in 
-the Gmail and sends the correctly formatted data to Google Sheets.
+The Easymator is a Python(Flask) project for automating workflows. After filling in the  
+fields on the HTML page, it automatically finds the necessary data in  
+the Gmail and sends the correctly formatted data to Google Sheets.  
 
-This program is designed for call center operators. Its main task: after 
-entering the source of advertising, to find the number from which there 
-was a call, which is in the mail and to save data in a table on its own. 
-In some scenarios, providing a report and results to the user in a browser.
+This program is designed for call center operators. Its main task: after   
+entering the source of advertising, to find the number from which there  
+was a call, which is in the mail and to save data in a table on its own.  
+In some scenarios, providing a report and results to the user in a browser.  
 
 Documentation
 -------------
 
-For the program to work properly, you need to fill in the following data in the file 
+For the program to work properly, you need to fill in the following data in the file   
 "MangoParser.py":
 1. Auth data. This is your Gmail login and password.
 2. Key word for searching. Key word for searching in Gmail inbox.
