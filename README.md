@@ -23,7 +23,8 @@ For the program to work properly, you need to fill in the following data in the 
 and 
 
 "Save_in_sheet.py":
-1. Key secret file (Easymator folder). The google service account secret file for write to you GSheets
+1. Key secret file (Easymator folder). The google service account secret  
+file for write to you GSheets
 Installation.
 2. Table ID. Spreadsheet ID.
 3. Sheet ID. Sheets ID.
@@ -39,6 +40,6 @@ Just type in console/terminal: 'Python3' and url file 'Flaskstart.py'.
 Contacts
 --------
 
-GitHub: https://github.com/AlixPlisov
-Mail: pllisovalix@gmail.com
-Tel. +79094441987
+GitHub: https://github.com/AlixPlisov  
+Mail: pllisovalix@gmail.com  
+Tel. +79094441987  
