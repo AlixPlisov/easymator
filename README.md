@@ -3,8 +3,8 @@
 What is it?
 -----------
 
-The Easymator is a Python(Flask) project for automating workflows. After filling in the  
-fields on the HTML page, it automatically finds the necessary data in  
+The Easymator is a Python(Flask) project for automating workflows.  
+After filling in the fields on the HTML page, it automatically finds the necessary data in  
 the Gmail and sends the correctly formatted data to Google Sheets.  
 
 This program is designed for call center operators. Its main task: after   
