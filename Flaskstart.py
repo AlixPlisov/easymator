@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from MangoParser import connect_gmail_start, update_num, ever_connect
 from flask import Flask, render_template, request, redirect
 from datetime import datetime
@@ -10,11 +11,11 @@ import time
 app = Flask(__name__)
 mail = connect_gmail_start()
 pr = 0
+
 correct_num = 0
 
 
-def evr() -> None:
-    """Updates the connection every 120 seconds to prevent disconnection"""
+def evr():
     global pr
     while True:
         if pr == 'start':
@@ -24,25 +25,24 @@ def evr() -> None:
             pr = 'start'
             ever_connect()
             pr = 0
-            print('Connection success. Up to update 120 seconds.')
+            print('Подключение подтверждено, ждем 120с.')
             time.sleep(120)
             continue
 
 
-ev = Thread(target=evr)  # Thread for check connect
+ev = Thread(target=evr)
 ev.start()
 
 
 def get_time() -> 'time':
-    """Return current time"""
     tz = pytz.timezone('Europe/Moscow')
     times = datetime.now(tz=tz).strftime('%H:%M')
-    print('Get time')
+    print('Время загружено: ', times)
     return times
 
 
 @app.route('/', methods=['GET', 'POST'])
-def newstart() -> 'html':
+def newstart():
     return render_template('newindex.html')
 
 
@@ -56,13 +56,12 @@ def res_page() -> 'html':
                 continue
             else:
                 break
-    ads = request.form['ads']
-    description = request.form.get('description')
+
+    description = request.form.get('description')  # сделать async, имя во фронт
     note = request.form['note']
-    ads = ''.join(list(ads))
     note = ''.join(list(note))
     description = ''.join(list(description))
-    times = get_time()
+    times = get_time()  # сделать async
     req = request.form['res']
     while True:
         if pr == 'start':
@@ -71,44 +70,43 @@ def res_page() -> 'html':
         else:
             break
     if req == 'order':
-        processing(ads, description, times, req)
+        processing(description, times, req)
         ptel_num = list(tel_num)
         ptel_num.remove("7")
         ptel_num = ''.join(ptel_num)
-        print('Order page is ok')
+        print('Заказ. Данные обработаны')
         return render_template('cool.html', ads=ads, tel_num=ptel_num, note=note, res='ЗАКАЗ', status=status)
     elif req == 'preorder':
-        processing(ads, description, times, req)
+        processing(description, times, req)
         ptel_num = list(tel_num)
         ptel_num.remove("7")
         ptel_num = ''.join(ptel_num)
 
         return render_template('cool.html', ads=ads, tel_num=ptel_num, note=note, res='ПРЕДЗАКАЗ', status=status)
     else:
-        th = Thread(target=processing, args=(ads, description, times, req))
+        th = Thread(target=processing, args=(description, times, req))
         th.start()
         return redirect('/')
 
 
-def processing(ads, description, times, req) -> None:
-    """Load email from Gmail and safe data in Google Sheet"""
-    print('Processing start')
-    global correct_num, tel_num, status, globalcounst, pr
+def processing(description, times, req):
+    print('Работаю...')
+    global correct_num, tel_num, status, globalcounst, pr, ads
     pr = 'start'
     globalcounst = 'start'
-    tel_num = update_num(mail)
+    tel_num, ads = update_num(mail)
     tel_num = ''.join(list(tel_num))
     c = 0
-    print('Processing while start')
+    print('Проверяю номер...')
     while True:
         if correct_num == tel_num:
             if c < 4:
-                tel_num = update_num(mail)
+                tel_num,ads = update_num(mail)
                 c += 1
-                print('While processing lose')
+                print('Не удалось проверить номер, повторяю операцию...')
                 continue
         break
-    print('Processing while end')
+    print('Успешно! отправляю данные браузеру...')
     if req == 'order':
         r = 'Курьер'
         cel = 1
@@ -160,10 +158,12 @@ def processing(ads, description, times, req) -> None:
             status = 'ОК'
     correct_num = tel_num
     globalcounst = 0
-    print('Processing end')
+    print('Всё супер!')
     pr = 0
 
 
-if __name__ == '__main__':
-    app.debug = True
-    app.run()
+app.run(port=1024, debug=True)
+
+
+
+

@@ -9,22 +9,23 @@ BEFORE RUNNING:
 """
 
 import httplib2
-import os
+import sys, os
 import apiclient.discovery
 from oauth2client.service_account import ServiceAccountCredentials
 
+path_to_current_file = os.path.realpath(__file__)
+path_to_current_folder = os.path.dirname(path_to_current_file)
 
-def save_data(time, num, ads, res, cel) -> str:
-    """Save data in Google Sheet"""
-    print('safe data start')
-    CREDENTIALS_FILE = os.path.dirname(__file__)+'/<Key secret file>'  # Key secret file (Easymator folder)
-    credentials = ServiceAccountCredentials.from_json_keyfile_name(CREDENTIALS_FILE,
-                                                                   ['https://www.googleapis.com/auth/spreadsheets',
-                                                                    'https://www.googleapis.com/auth/drive'])
+def save_data(time, num, ads, res, cel) -> None:
+    print('Начинаю процедуру выгрузки данных')
+    CREDENTIALS_FILE = os.path.realpath(path_to_current_folder+'< File.json>')   # Key secret file
+    credentials = ServiceAccountCredentials.from_json_keyfile_name(CREDENTIALS_FILE, ['https://www.googleapis.com/auth/spreadsheets',
+                                                                                      'https://www.googleapis.com/auth/drive'])
     httpAuth = credentials.authorize(httplib2.Http())
     service = apiclient.discovery.build('sheets', 'v4', http=httpAuth)
-    spreadsheet_id = '<ID table>'  # Table ID
-    range_ = '<SheetID>!A1:B1'  # Sheet ID
+    # The ID of the spreadsheet to update.
+    spreadsheet_id = '1xMCmtWikFkxXkcz2oqE74dtcHk6yAVtIymDNHm31KlM'  # ID table
+    range_ = '<Name of range>!A1:B1'
     value_input_option = 'RAW'
     insert_data_option = 'INSERT_ROWS'
     value_range_body = {"values": [[time, num, ads, res, cel]],}  # Insert data
@@ -34,5 +35,6 @@ def save_data(time, num, ads, res, cel) -> str:
                                                      insertDataOption=insert_data_option,
                                                      body=value_range_body)
     response = request.execute()
-    print('safe data end')
-    return print('Results: ' + str(response))
+    print('Данные выгружены!')
+    return print('Результат сохранения в таблицу гугл: '+str(response))
+
