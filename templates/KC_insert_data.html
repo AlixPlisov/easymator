@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ the_title }}</title>
+</head>
+<body>
+
+
+
+
+
+<form method="post", action='/res_page'>
+<p>Время звонка:</p>
+<input value="{{ time }}"><button>Обновить</button>
+<p>Номер клиента:</p>
+<input  value="{{ tel_num }}" id="tel", name="tel_num">     <script>
+window.addEventListener("DOMContentLoaded", function() {
+function setCursorPosition(pos, elem) {
+    elem.focus();
+    if (elem.setSelectionRange) elem.setSelectionRange(pos, pos);
+    else if (elem.createTextRange) {
+        var range = elem.createTextRange();
+        range.collapse(true);
+        range.moveEnd("character", pos);
+        range.moveStart("character", pos);
+        range.select()
+    }
+}
+
+function mask(event) {
+    var matrix = "(___) ___-__-__",
+        i = 0,
+        def = matrix.replace(/\D/g, ""),
+        val = this.value.replace(/\D/g, "");
+    if (def.length >= val.length) val = def;
+    this.value = matrix.replace(/./g, function(a) {
+        return /[_\d]/.test(a) && i < val.length ? val.charAt(i++) : i >= val.length ? "" : a
+    });
+    if (event.type == "blur") {
+        if (this.value.length == 2) this.value = ""
+    } else setCursorPosition(this.value.length, this)
+};
+    var input = document.querySelector("#tel");
+    input.addEventListener("input", mask, false);
+    input.addEventListener("focus", mask, false);
+    input.addEventListener("blur", mask, false);
+});
+  </script>
+
+<p>Реклама</p>
+<input name="ads", value="{{ ads }}">
+<p>Описание проблемы:</p>
+<textarea name="description">{{ description }}</textarea>
+<p></p>
+<button type="submit">Оформлен!</button>
+    <input value="Do it" type="submit">
+<p>Не вышло</p>
+<input name="fall", value="{{ fall }}">
+<button>Недожат</button>
+<p></p>
+<button>Заполнить</button>
+<button>Нецелевой</button>
+</form>
+</body>
+</html>

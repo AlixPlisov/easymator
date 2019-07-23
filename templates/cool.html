@@ -1,6 +1,7 @@
 <html><head>
   <meta charset="UTF-8">
   <title>Multi Step Form with Progress Bar using jQuery and CSS3</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
 
 	<link rel="stylesheet" media="screen" href="static/style2.css">
 
@@ -31,7 +32,7 @@
     <textarea type="textarea" name="note" style="height: 120px">{{ note }}</textarea>
     <input type="text" name="res" value='{{ res }}'>
     <input name="status" value='{{ status }}'>
-    <input type="submit" name="next" class="next action-button" value="Готово">
+    <input type="submit" style="margin-left: 30%;" name="next" class="next action-button" value="Готово">
   </fieldset>
   <fieldset>
     <h2 class="fs-title">Social Profiles</h2>

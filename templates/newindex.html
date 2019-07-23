@@ -3,6 +3,7 @@
   <title>Multi Step Form with Progress Bar using jQuery and CSS3</title>
 
 	<link rel="stylesheet" media="screen" href="static/style2.css">
+<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
 
 <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
 
@@ -16,12 +17,9 @@
   <!-- progressbar -->
   <!-- fieldsets -->
   <fieldset>
-<p style="text-align: center;"><img src="/static/images/img.png" height="90px"></p>
-{{ img }}
 
 
-        <input type="text" name="ads" placeholder="Источник рекламы" required>
-    <textarea type="textarea" name="note" placeholder="Заметки по разговору. Сохраняются для заказа и предзаказа" style="height: 120px"></textarea>
+    <textarea type="textarea" name="note" placeholder="Заметки по разговору. Сохраняются для заказа и предзаказа" style="height: 220px;"></textarea>
 <br><br>
 		<input class="radio" id="radio-1" type="radio" name="res" value="order" required="">
 		<label for="radio-1">Есть заказ!</label>
@@ -38,7 +36,8 @@
 		<label for="radio-4">Нецелевой</label><br>
 <br>
   <input name="description" placeholder="Если не оформил, то почему?">
-  <p>      </p>  <input type="submit" name="next" class="next action-button" value="Готово">
+  <p>      </p>  <input type="submit" style="margin-left: 0px;width: 280px;margin-right: 0px;" name="next" class="next action-button" value="Готово">
+<p style="text-align:center;paddint-top:10%;font-size:90%;color:white;">ПОМНИ О СВОЁМ ПРЕДНАЗНАЧЕНИИ</p>
   </fieldset>
   <fieldset>
     <h2 class="fs-title">Social Profiles</h2>
@@ -59,7 +58,6 @@
     <input type="button" name="previous" class="previous action-button" value="Previous">
   </fieldset>
 </form>
-
     <script src="{{ url_for('static', filename="js/index.js")}}"></script>
 </body>
 </html>
