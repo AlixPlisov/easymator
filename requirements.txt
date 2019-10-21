@@ -82,6 +82,6 @@ vine==1.2.0
 virtualenv==16.2.0
 wcwidth==0.1.7
 webencodings==0.5.1
-Werkzeug==0.14.1
+Werkzeug==0.15.3
 gunicorn
 psycopg2
